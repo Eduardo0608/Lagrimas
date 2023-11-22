@@ -1,12 +1,20 @@
-import org.example.Main;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.jupiter.api.*;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class MainTest {
+    @BeforeEach
+    void setUp(){
+        WebDriverManager.firefoxdriver().setup();
+    }
+
     @Test
-    void shouldResultBeGreaterThanOneIfNumeratorIsGreaterThanDenominator() {
-        final Main sut = new Main(); //Given
-        final double obtained = sut.divide(5, 2); //When
-        Assertions.assertTrue(obtained > 1); //Then
+    @DisplayName("Should open and close google")
+    public void shouldOpenAndCloseGoogle() throws InterruptedException{
+        WebDriver driver = new FirefoxDriver();
+        driver.get("https://www.google.com/");
+        Thread.sleep(1000);
+        driver.quit();
     }
 }
