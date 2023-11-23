@@ -138,4 +138,16 @@ public class LagrimasTest {
         String authorValue = authorInput.getAttribute("value");
         assertEquals("AuthorTest", authorValue);
     }
+
+    @Test
+    @DisplayName("Should not allow registration when name and author fields are not filled")
+    void shouldNotAllowRegistrationWhenNameAndAuthorFieldsAreNotFilled() {
+        driver.get("http://localhost:3000/cadastrar");
+        WebElement categoryInput = driver.findElement(By.id("categoria"));
+        categoryInput.sendKeys("CategoryTest");
+        WebElement registerButton = driver.findElement(By.id("cadastrar-button"));
+        registerButton.click();
+        String categoryValue = categoryInput.getAttribute("value");
+        assertEquals("CategoryTest", categoryValue);
+    }
 }
