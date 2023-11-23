@@ -27,4 +27,12 @@ public class MainTest {
         Thread.sleep(1000);
         tearDown();
     }
+
+    @Test
+    @DisplayName("Should open and close Lagrimas project")
+    public void shouldOpenAndCloseLagrimasProject() throws InterruptedException{
+        setUp();
+        Thread.sleep(1000);
+        tearDown();
+    }
 }
