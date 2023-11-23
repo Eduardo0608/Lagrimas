@@ -1,8 +1,6 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.time.Duration;
@@ -161,5 +159,30 @@ public class LagrimasTest {
         registerButton.click();
         String nameValue = nameInput.getAttribute("value");
         assertEquals("NameTest", nameValue);
+    }
+
+    @Test
+    @DisplayName("Should register tear successfully without name when required is removed from the field")
+    void shouldRegisterTearSuccessfullyWithoutNameWhenRequiredIsRemovedFromTheField() {
+        driver.get("http://localhost:3000/cadastrar");
+        WebElement nameInput = driver.findElement(By.id("nome"));
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        jsExecutor.executeScript("arguments[0].removeAttribute('required')", nameInput);
+        WebElement categoryInput = driver.findElement(By.id("categoria"));
+        categoryInput.sendKeys("CategoryTest");
+        WebElement authorInput = driver.findElement(By.id("autor"));
+        authorInput.sendKeys("AuthorTest");
+        WebElement registerButton = driver.findElement(By.id("cadastrar-button"));
+        registerButton.click();
+        Alert alert = driver.switchTo().alert();
+        alert.accept();
+        String currentUrl = driver.getCurrentUrl();
+        assertEquals("http://localhost:3000/cadastrar", currentUrl);
+        String nameValue = nameInput.getAttribute("value");
+        String categoryValue = categoryInput.getAttribute("value");
+        String authorValue = authorInput.getAttribute("value");
+        assertEquals("", nameValue);
+        assertEquals("", categoryValue);
+        assertEquals("", authorValue);
     }
 }
