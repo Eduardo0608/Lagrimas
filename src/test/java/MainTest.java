@@ -15,7 +15,6 @@ public class MainTest {
     void setUp() {
         WebDriverManager.firefoxdriver().setup();
         driver = new FirefoxDriver();
-        driver.get("http://localhost:3000/");
     }
 
     @AfterEach
@@ -36,6 +35,7 @@ public class MainTest {
     @DisplayName("Should open and close Lagrimas project")
     public void shouldOpenAndCloseLagrimasProject() throws InterruptedException {
         setUp();
+        driver.get("http://localhost:3000/");
         Thread.sleep(1000);
         tearDown();
     }
@@ -44,6 +44,7 @@ public class MainTest {
     @DisplayName("Should open tear's register page")
     public void shouldOpenTearsRegisterPage() throws InterruptedException {
         setUp();
+        driver.get("http://localhost:3000/");
         WebElement registerPath = driver.findElement(By.xpath("//a[@href='/cadastrar']"));
         registerPath.click();
         Thread.sleep(1000);
