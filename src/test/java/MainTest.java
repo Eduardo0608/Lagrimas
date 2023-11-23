@@ -24,33 +24,24 @@ public class MainTest {
 
     @Test
     @DisplayName("Should open and close google")
-    public void shouldOpenAndCloseGoogle() throws InterruptedException {
-        setUp();
+    public void shouldOpenAndCloseGoogle() {
         driver.get("https://www.google.com/");
-        Thread.sleep(1000);
-        tearDown();
     }
 
     @Test
     @DisplayName("Should open and close Lagrimas project")
-    public void shouldOpenAndCloseLagrimasProject() throws InterruptedException {
-        setUp();
+    public void shouldOpenAndCloseLagrimasProject() {
         driver.get("http://localhost:3000/");
-        Thread.sleep(1000);
-        tearDown();
     }
 
     @Test
     @DisplayName("Should open tear's register page")
-    public void shouldOpenTearsRegisterPage() throws InterruptedException {
-        setUp();
+    public void shouldOpenTearsRegisterPage() {
         driver.get("http://localhost:3000/");
         WebElement registerPath = driver.findElement(By.xpath("//a[@href='/cadastrar']"));
         registerPath.click();
-        Thread.sleep(1000);
         String novaURL = driver.getCurrentUrl();
         assertEquals("http://localhost:3000/cadastrar", novaURL);
-        tearDown();
     }
 
     @Test
