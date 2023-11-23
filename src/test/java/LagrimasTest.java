@@ -64,4 +64,18 @@ public class LagrimasTest {
         driver.manage().window().fullscreen();
         driver.manage().window().minimize();
     }
+
+    @Test
+    @DisplayName("Should save if all fields are filled in")
+    void shouldSaveIfAllFieldsAreFilledIn() {
+        driver.get("http://localhost:3000/cadastrar");
+        WebElement nameInput = driver.findElement(By.id("nome"));
+        nameInput.sendKeys("NameTest");
+        WebElement categoryInput = driver.findElement(By.id("categoria"));
+        categoryInput.sendKeys("CategoryTest");
+        WebElement authorInput = driver.findElement(By.id("autor"));
+        authorInput.sendKeys("AuthorTest");
+        WebElement registerButton = driver.findElement(By.id("cadastrar-button"));
+        registerButton.click();
+    }
 }
