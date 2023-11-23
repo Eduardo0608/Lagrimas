@@ -7,7 +7,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class MainTest {
+public class LagrimasTest {
 
     private WebDriver driver;
 
