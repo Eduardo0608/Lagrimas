@@ -46,13 +46,9 @@ public class MainTest {
         setUp();
         WebElement registerPath = driver.findElement(By.xpath("//a[@href='/cadastrar']"));
         registerPath.click();
-
         Thread.sleep(1000);
-
         String novaURL = driver.getCurrentUrl();
-
         assertEquals("http://localhost:3000/cadastrar", novaURL);
-
         tearDown();
     }
 }
