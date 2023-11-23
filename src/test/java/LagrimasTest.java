@@ -4,9 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
-
 import java.time.Duration;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LagrimasTest {
@@ -77,5 +75,21 @@ public class LagrimasTest {
         authorInput.sendKeys("AuthorTest");
         WebElement registerButton = driver.findElement(By.id("cadastrar-button"));
         registerButton.click();
+    }
+
+    @Test
+    @DisplayName("Should not allow registration when name field is not filled")
+    void shouldNotAllowRegistrationWhenNameFieldIsNotFilled() {
+        driver.get("http://localhost:3000/cadastrar");
+        WebElement categoryInput = driver.findElement(By.id("categoria"));
+        categoryInput.sendKeys("CategoryTest");
+        WebElement authorInput = driver.findElement(By.id("autor"));
+        authorInput.sendKeys("AuthorTest");
+        WebElement registerButton = driver.findElement(By.id("cadastrar-button"));
+        registerButton.click();
+        String categoryValue = categoryInput.getAttribute("value");
+        String authorValue = authorInput.getAttribute("value");
+        assertEquals("CategoryTest", categoryValue);
+        assertEquals("AuthorTest", authorValue);
     }
 }
