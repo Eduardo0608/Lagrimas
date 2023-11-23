@@ -11,6 +11,7 @@ public class MainTest {
     void setUp(){
         WebDriverManager.firefoxdriver().setup();
         driver = new FirefoxDriver();
+        driver.get("http://localhost:3000/");
     }
 
     @AfterEach
