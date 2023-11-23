@@ -52,4 +52,13 @@ public class MainTest {
         assertEquals("http://localhost:3000/cadastrar", novaURL);
         tearDown();
     }
+
+    @Test
+    @DisplayName("Should let change the size of the main page")
+    void shouldLetChangeTheSizeOfTheMainPage() {
+        driver.get("http://localhost:3000/");
+        driver.manage().window().maximize();
+        driver.manage().window().fullscreen();
+        driver.manage().window().minimize();
+    }
 }
