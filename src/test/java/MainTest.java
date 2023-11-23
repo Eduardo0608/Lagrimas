@@ -52,4 +52,13 @@ public class MainTest {
         driver.manage().window().fullscreen();
         driver.manage().window().minimize();
     }
+
+    @Test
+    @DisplayName("Should let change the size of the register page")
+    void shouldLetChangeTheSizeOfTheRegisterPage() {
+        driver.get("http://localhost:3000/cadastrar");
+        driver.manage().window().maximize();
+        driver.manage().window().fullscreen();
+        driver.manage().window().minimize();
+    }
 }
