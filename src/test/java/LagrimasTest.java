@@ -210,4 +210,29 @@ public class LagrimasTest {
         assertEquals("", categoryValue);
         assertEquals("", authorValue);
     }
+
+    @Test
+    @DisplayName("Should register tear successfully without author when required is removed from the field")
+    void shouldRegisterTearSuccessfullyWithoutAuthorWhenRequiredIsRemovedFromTheField() {
+        driver.get("http://localhost:3000/cadastrar");
+        WebElement nameInput = driver.findElement(By.id("nome"));
+        nameInput.sendKeys("NameTest");
+        WebElement authorInput = driver.findElement(By.id("autor"));
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        jsExecutor.executeScript("arguments[0].removeAttribute('required')", authorInput);
+        WebElement categoryInput = driver.findElement(By.id("categoria"));
+        categoryInput.sendKeys("CategoryTest");
+        WebElement registerButton = driver.findElement(By.id("cadastrar-button"));
+        registerButton.click();
+        Alert alert = driver.switchTo().alert();
+        alert.accept();
+        String currentUrl = driver.getCurrentUrl();
+        assertEquals("http://localhost:3000/cadastrar", currentUrl);
+        String nameValue = nameInput.getAttribute("value");
+        String categoryValue = categoryInput.getAttribute("value");
+        String authorValue = authorInput.getAttribute("value");
+        assertEquals("", nameValue);
+        assertEquals("", categoryValue);
+        assertEquals("", authorValue);
+    }
 }
