@@ -260,4 +260,15 @@ public class LagrimasTest {
         assertEquals("", categoryValue);
         assertEquals("", authorValue);
     }
+
+    @Test
+    @DisplayName("Should navigate back to home page from Cadastrar")
+    void shouldNavigateBackToHomePageFromCadastrar() {
+        driver.get("http://localhost:3000/cadastrar");
+        WebElement returnButton = driver.findElement(By.xpath("//a[@href='/']"));
+        returnButton.click();
+        String currentUrl = driver.getCurrentUrl();
+        assertEquals("http://localhost:3000/", currentUrl);
+    }
+
 }
