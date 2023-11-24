@@ -271,4 +271,13 @@ public class LagrimasTest {
         assertEquals("http://localhost:3000/", currentUrl);
     }
 
+    @Test
+    @DisplayName("Should navigate to Edit page when clicking edit button")
+    void shouldNavigateToEditPageWhenClickingEditButton() {
+        driver.get("http://localhost:3000/");
+        WebElement editButton = driver.findElement(By.xpath("(//div[@class='lagrima-card']//a)[1]"));
+        editButton.click();
+        String currentUrl = driver.getCurrentUrl();
+        assertEquals("http://localhost:3000/lagrima?id=2", currentUrl);
+    }
 }
