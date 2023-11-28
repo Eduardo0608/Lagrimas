@@ -1,3 +1,4 @@
+import com.github.javafaker.Faker;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
@@ -10,6 +11,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class LagrimasTest {
 
     private WebDriver driver;
+
+    private final Faker faker = new Faker();
 
     @BeforeEach
     void setUp() {
@@ -65,13 +68,13 @@ public class LagrimasTest {
         driver.get("http://localhost:3000/cadastrar");
 
         WebElement nameInput = driver.findElement(By.id("nome"));
-        nameInput.sendKeys("NameTest");
+        nameInput.sendKeys(faker.name().firstName());
 
         WebElement categoryInput = driver.findElement(By.id("categoria"));
-        categoryInput.sendKeys("CategoryTest");
+        categoryInput.sendKeys(faker.book().genre());
 
         WebElement authorInput = driver.findElement(By.id("autor"));
-        authorInput.sendKeys("AuthorTest");
+        authorInput.sendKeys(faker.book().author());
 
         WebElement registerButton = driver.findElement(By.id("cadastrar-button"));
         registerButton.click();
@@ -83,18 +86,25 @@ public class LagrimasTest {
         driver.get("http://localhost:3000/cadastrar");
 
         WebElement categoryInput = driver.findElement(By.id("categoria"));
-        categoryInput.sendKeys("CategoryTest");
+        String saveCategory = faker.book().genre();
+        categoryInput.sendKeys(saveCategory);
 
         WebElement authorInput = driver.findElement(By.id("autor"));
-        authorInput.sendKeys("AuthorTest");
+        String saveBookAuthor = faker.book().author();
+        authorInput.sendKeys(saveBookAuthor);
 
         WebElement registerButton = driver.findElement(By.id("cadastrar-button"));
         registerButton.click();
 
         String categoryValue = categoryInput.getAttribute("value");
         String authorValue = authorInput.getAttribute("value");
-        assertEquals("CategoryTest", categoryValue);
-        assertEquals("AuthorTest", authorValue);
+
+        WebElement nameInput = driver.findElement(By.id("nome"));
+        String nameValue = nameInput.getAttribute("value");
+        assertEquals("", nameValue);
+
+        assertEquals(saveCategory, categoryValue);
+        assertEquals(saveBookAuthor, authorValue);
     }
 
     @Test
@@ -103,18 +113,20 @@ public class LagrimasTest {
         driver.get("http://localhost:3000/cadastrar");
 
         WebElement nameInput = driver.findElement(By.id("nome"));
-        nameInput.sendKeys("NameTest");
+        String saveName = faker.name().firstName();
+        nameInput.sendKeys(saveName);
 
         WebElement authorInput = driver.findElement(By.id("autor"));
-        authorInput.sendKeys("AuthorTest");
+        String saveAuthorName = faker.book().author();
+        authorInput.sendKeys(saveAuthorName);
 
         WebElement registerButton = driver.findElement(By.id("cadastrar-button"));
         registerButton.click();
 
         String nameValue = nameInput.getAttribute("value");
         String authorValue = authorInput.getAttribute("value");
-        assertEquals("NameTest", nameValue);
-        assertEquals("AuthorTest", authorValue);
+        assertEquals(saveName, nameValue);
+        assertEquals(saveAuthorName, authorValue);
     }
 
     @Test
@@ -123,18 +135,20 @@ public class LagrimasTest {
         driver.get("http://localhost:3000/cadastrar");
 
         WebElement nameInput = driver.findElement(By.id("nome"));
-        nameInput.sendKeys("NameTest");
+        String saveName = faker.name().firstName();
+        nameInput.sendKeys(saveName);
 
         WebElement categoryInput = driver.findElement(By.id("categoria"));
-        categoryInput.sendKeys("CategoryTest");
+        String saveCategory = faker.book().genre();
+        categoryInput.sendKeys(saveCategory);
 
         WebElement registerButton = driver.findElement(By.id("cadastrar-button"));
         registerButton.click();
 
         String nameValue = nameInput.getAttribute("value");
         String categoryValue = categoryInput.getAttribute("value");
-        assertEquals("NameTest", nameValue);
-        assertEquals("CategoryTest", categoryValue);
+        assertEquals(saveName, nameValue);
+        assertEquals(saveCategory, categoryValue);
     }
 
     @Test
@@ -143,13 +157,14 @@ public class LagrimasTest {
         driver.get("http://localhost:3000/cadastrar");
 
         WebElement authorInput = driver.findElement(By.id("autor"));
-        authorInput.sendKeys("AuthorTest");
+        String saveAuthorName = faker.book().author();
+        authorInput.sendKeys(saveAuthorName);
 
         WebElement registerButton = driver.findElement(By.id("cadastrar-button"));
         registerButton.click();
 
         String authorValue = authorInput.getAttribute("value");
-        assertEquals("AuthorTest", authorValue);
+        assertEquals(saveAuthorName, authorValue);
     }
 
     @Test
@@ -158,13 +173,14 @@ public class LagrimasTest {
         driver.get("http://localhost:3000/cadastrar");
 
         WebElement categoryInput = driver.findElement(By.id("categoria"));
-        categoryInput.sendKeys("CategoryTest");
+        String saveCategory = faker.book().genre();
+        categoryInput.sendKeys(saveCategory);
 
         WebElement registerButton = driver.findElement(By.id("cadastrar-button"));
         registerButton.click();
 
         String categoryValue = categoryInput.getAttribute("value");
-        assertEquals("CategoryTest", categoryValue);
+        assertEquals(saveCategory, categoryValue);
     }
 
     @Test
@@ -173,13 +189,14 @@ public class LagrimasTest {
         driver.get("http://localhost:3000/cadastrar");
 
         WebElement nameInput = driver.findElement(By.id("nome"));
-        nameInput.sendKeys("NameTest");
+        String saveName = faker.name().firstName();
+        nameInput.sendKeys(saveName);
 
         WebElement registerButton = driver.findElement(By.id("cadastrar-button"));
         registerButton.click();
 
         String nameValue = nameInput.getAttribute("value");
-        assertEquals("NameTest", nameValue);
+        assertEquals(saveName, nameValue);
     }
 
     @Test
@@ -193,10 +210,12 @@ public class LagrimasTest {
         jsExecutor.executeScript("arguments[0].removeAttribute('required')", nameInput);
 
         WebElement categoryInput = driver.findElement(By.id("categoria"));
-        categoryInput.sendKeys("CategoryTest");
+        String saveCategory = faker.book().genre();
+        categoryInput.sendKeys(saveCategory);
 
         WebElement authorInput = driver.findElement(By.id("autor"));
-        authorInput.sendKeys("AuthorTest");
+        String saveAuthorName = faker.book().author();
+        authorInput.sendKeys(saveAuthorName);
 
         WebElement registerButton = driver.findElement(By.id("cadastrar-button"));
         registerButton.click();
@@ -226,10 +245,12 @@ public class LagrimasTest {
         jsExecutor.executeScript("arguments[0].removeAttribute('required')", categoryInput);
 
         WebElement nameInput = driver.findElement(By.id("nome"));
-        nameInput.sendKeys("NameTest");
+        String saveName = faker.name().firstName();
+        nameInput.sendKeys(saveName);
 
         WebElement authorInput = driver.findElement(By.id("autor"));
-        authorInput.sendKeys("AuthorTest");
+        String saveAuthor = faker.book().author();
+        authorInput.sendKeys(saveAuthor);
 
         WebElement registerButton = driver.findElement(By.id("cadastrar-button"));
         registerButton.click();
@@ -254,7 +275,8 @@ public class LagrimasTest {
         driver.get("http://localhost:3000/cadastrar");
 
         WebElement nameInput = driver.findElement(By.id("nome"));
-        nameInput.sendKeys("NameTest");
+        String saveName = faker.name().firstName();
+        nameInput.sendKeys(saveName);
 
         WebElement authorInput = driver.findElement(By.id("autor"));
 
@@ -262,7 +284,8 @@ public class LagrimasTest {
         jsExecutor.executeScript("arguments[0].removeAttribute('required')", authorInput);
 
         WebElement categoryInput = driver.findElement(By.id("categoria"));
-        categoryInput.sendKeys("CategoryTest");
+        String saveCategory = faker.book().genre();
+        categoryInput.sendKeys(saveCategory);
 
         WebElement registerButton = driver.findElement(By.id("cadastrar-button"));
         registerButton.click();
@@ -348,17 +371,20 @@ public class LagrimasTest {
 
         WebElement nameInput = driver.findElement(By.id("nome"));
         nameInput.clear();
-        nameInput.sendKeys("NewName");
+        String saveName = faker.name().firstName();
+        nameInput.sendKeys(saveName);
         Thread.sleep(1000);
 
         WebElement categoryInput = driver.findElement(By.id("categoria"));
         categoryInput.clear();
-        categoryInput.sendKeys("NewCategory");
+        String saveCategory = faker.book().genre();
+        categoryInput.sendKeys(saveCategory);
         Thread.sleep(1000);
 
         WebElement authorInput = driver.findElement(By.id("autor"));
         authorInput.clear();
-        authorInput.sendKeys("NewAuthor");
+        String saveAuthor = faker.book().author();
+        authorInput.sendKeys(saveAuthor);
 
         WebElement editButton2 = driver.findElement(By.id("editar-button"));
         editButton2.click();
@@ -366,6 +392,7 @@ public class LagrimasTest {
 
         Alert alert = driver.switchTo().alert();
         alert.accept();
+        Thread.sleep(1000);
 
         WebElement nameInputReload = driver.findElement(By.id("nome"));
         WebElement categoryInputReload = driver.findElement(By.id("categoria"));
@@ -374,6 +401,7 @@ public class LagrimasTest {
         String nameValue = nameInputReload.getAttribute("value");
         String categoryValue = categoryInputReload.getAttribute("value");
         String authorValue = authorInputReload.getAttribute("value");
+
         assertEquals("", nameValue);
         assertEquals("", categoryValue);
         assertEquals("", authorValue);
@@ -392,11 +420,13 @@ public class LagrimasTest {
 
         WebElement categoryInput = driver.findElement(By.id("categoria"));
         categoryInput.clear();
-        categoryInput.sendKeys("NewCategory");
+        String saveCategory = faker.book().genre();
+        categoryInput.sendKeys(saveCategory);
 
         WebElement authorInput = driver.findElement(By.id("autor"));
         authorInput.clear();
-        authorInput.sendKeys("NewAuthor");
+        String saveAuthor = faker.book().author();
+        authorInput.sendKeys(saveAuthor);
 
         WebElement editButton2 = driver.findElement(By.id("editar-button"));
         editButton2.click();
