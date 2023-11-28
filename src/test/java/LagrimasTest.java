@@ -280,4 +280,39 @@ public class LagrimasTest {
         String currentUrl = driver.getCurrentUrl();
         assertEquals("http://localhost:3000/lagrima?id=2", currentUrl);
     }
+
+    @Test
+    @DisplayName("Should navigate to edit page and edit the correct fields")
+    void shouldNavigateToEditPageAndEditTheCorrectFields() throws InterruptedException {
+        driver.get("http://localhost:3000/");
+        WebElement editButton = driver.findElement(By.xpath("(//div[@class='lagrima-card']//a)[1]"));
+        editButton.click();
+        Thread.sleep(1000);
+        WebElement nameInput = driver.findElement(By.id("nome"));
+        nameInput.clear();
+        nameInput.sendKeys("NewName");
+        Thread.sleep(1000);
+        WebElement categoryInput = driver.findElement(By.id("categoria"));
+        categoryInput.clear();
+        categoryInput.sendKeys("NewCategory");
+        Thread.sleep(1000);
+        WebElement authorInput = driver.findElement(By.id("autor"));
+        authorInput.clear();
+        authorInput.sendKeys("NewAuthor");
+        Thread.sleep(1000);
+        WebElement editButton2 = driver.findElement(By.id("editar-button"));
+        editButton2.click();
+        Thread.sleep(1000);
+        Alert alert = driver.switchTo().alert();
+        alert.accept();
+        WebElement nameInputReload = driver.findElement(By.id("nome"));
+        WebElement categoryInputReload = driver.findElement(By.id("categoria"));
+        WebElement authorInputReload = driver.findElement(By.id("autor"));
+        String nameValue = nameInputReload.getAttribute("value");
+        String categoryValue= categoryInputReload.getAttribute("value");
+        String authorValue = authorInputReload.getAttribute("value");
+        assertEquals("", nameValue);
+        assertEquals("", categoryValue);
+        assertEquals("", authorValue);
+    }
 }
