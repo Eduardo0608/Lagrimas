@@ -299,7 +299,6 @@ public class LagrimasTest {
         WebElement authorInput = driver.findElement(By.id("autor"));
         authorInput.clear();
         authorInput.sendKeys("NewAuthor");
-        Thread.sleep(1000);
         WebElement editButton2 = driver.findElement(By.id("editar-button"));
         editButton2.click();
         Thread.sleep(1000);
@@ -309,7 +308,40 @@ public class LagrimasTest {
         WebElement categoryInputReload = driver.findElement(By.id("categoria"));
         WebElement authorInputReload = driver.findElement(By.id("autor"));
         String nameValue = nameInputReload.getAttribute("value");
-        String categoryValue= categoryInputReload.getAttribute("value");
+        String categoryValue = categoryInputReload.getAttribute("value");
+        String authorValue = authorInputReload.getAttribute("value");
+        assertEquals("", nameValue);
+        assertEquals("", categoryValue);
+        assertEquals("", authorValue);
+    }
+
+    @Test
+    @DisplayName("Should navigate to edit page and pass a blank field")
+    void shouldNavigateToEditPageAndPassABlankField() throws InterruptedException {
+        driver.get("http://localhost:3000/");
+        WebElement editButton = driver.findElement(By.xpath("(//div[@class='lagrima-card']//a)[1]"));
+        editButton.click();
+        WebElement nameInput = driver.findElement(By.id("nome"));
+        nameInput.clear();
+        WebElement categoryInput = driver.findElement(By.id("categoria"));
+        categoryInput.clear();
+        categoryInput.sendKeys("NewCategory");
+        WebElement authorInput = driver.findElement(By.id("autor"));
+        authorInput.clear();
+        authorInput.sendKeys("NewAuthor");
+        WebElement editButton2 = driver.findElement(By.id("editar-button"));
+        editButton2.click();
+        Thread.sleep(1000);
+        Alert alert = driver.switchTo().alert();
+        alert.accept();
+        Thread.sleep(1000);
+        Alert alert2 = driver.switchTo().alert();
+        alert2.accept();
+        WebElement nameInputReload = driver.findElement(By.id("nome"));
+        WebElement categoryInputReload = driver.findElement(By.id("categoria"));
+        WebElement authorInputReload = driver.findElement(By.id("autor"));
+        String nameValue = nameInputReload.getAttribute("value");
+        String categoryValue = categoryInputReload.getAttribute("value");
         String authorValue = authorInputReload.getAttribute("value");
         assertEquals("", nameValue);
         assertEquals("", categoryValue);
