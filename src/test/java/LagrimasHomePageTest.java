@@ -8,7 +8,7 @@ import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class LagrimasTest {
+public class LagrimasHomePageTest {
 
     private WebDriver driver;
 
