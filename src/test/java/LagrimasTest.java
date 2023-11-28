@@ -24,12 +24,6 @@ public class LagrimasTest {
     }
 
     @Test
-    @DisplayName("Should open and close google")
-    public void shouldOpenAndCloseGoogle() {
-        driver.get("https://www.google.com/");
-    }
-
-    @Test
     @DisplayName("Should open and close Lagrimas project")
     public void shouldOpenAndCloseLagrimasProject() {
         driver.get("http://localhost:3000/");
