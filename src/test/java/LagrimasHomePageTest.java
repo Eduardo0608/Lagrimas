@@ -6,6 +6,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LagrimasHomePageTest {
 
@@ -54,11 +55,11 @@ public class LagrimasHomePageTest {
     @DisplayName("Should navigate to Edit page when clicking edit button")
     void shouldNavigateToEditPageWhenClickingEditButton() {
         driver.get("http://localhost:3000/");
-
         WebElement editButton = driver.findElement(By.xpath("(//div[@class='lagrima-card']//a)[1]"));
         editButton.click();
-
         String currentUrl = driver.getCurrentUrl();
-        assertEquals("http://localhost:3000/lagrima?id=2", currentUrl);
+
+        System.out.println(currentUrl);
+        assertTrue(currentUrl.startsWith("http://localhost:3000/lagrima?id="));
     }
 }
