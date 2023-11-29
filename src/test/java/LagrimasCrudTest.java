@@ -460,7 +460,7 @@ public class LagrimasCrudTest {
 
     @Test
     @DisplayName("Should delete an item when clicking delete button")
-    void shouldDeleteAnItemWhenClickingDeleteButton() throws InterruptedException{
+    void shouldDeleteAnItemWhenClickingDeleteButton() throws InterruptedException {
         driver.get("http://localhost:3000/");
 
         WebElement editButton = driver.findElement(By.xpath("(//div[@class='lagrima-card']//a)[1]"));
