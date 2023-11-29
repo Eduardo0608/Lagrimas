@@ -457,4 +457,27 @@ public class LagrimasCrudTest {
         assertEquals("", categoryValue);
         assertEquals("", authorValue);
     }
+
+    @Test
+    @DisplayName("Should delete an item when clicking delete button")
+    void shouldDeleteAnItemWhenClickingDeleteButton() {
+        driver.get("http://localhost:3000/");
+
+        WebElement editButton = driver.findElement(By.xpath("(//div[@class='lagrima-card']//a)[1]"));
+        editButton.click();
+
+        WebElement nameInput = driver.findElement(By.id("nome"));
+
+        //For some reason, Firefox doesn't let you delete a Tear if all the fields are filled in, so leaving a field empty makes the test pass successfully.
+        //nameInput.clear();
+
+        WebElement deleteButton = driver.findElement(By.id("deletar-button"));
+        deleteButton.click();
+
+        Alert alert = driver.switchTo().alert();
+        alert.accept();
+
+        String currentUrl = driver.getCurrentUrl();
+        assertEquals("http://localhost:3000/", currentUrl);
+    }
 }
