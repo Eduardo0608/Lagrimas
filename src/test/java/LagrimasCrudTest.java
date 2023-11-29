@@ -469,7 +469,7 @@ public class LagrimasCrudTest {
         WebElement nameInput = driver.findElement(By.id("nome"));
 
         //For some reason, Firefox doesn't let you delete a Tear if all the fields are filled in, so leaving a field empty makes the test pass successfully.
-        nameInput.clear();
+        //nameInput.clear();
 
         WebElement deleteButton = driver.findElement(By.id("deletar-button"));
         deleteButton.click();
