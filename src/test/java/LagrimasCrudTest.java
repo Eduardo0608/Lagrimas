@@ -460,7 +460,7 @@ public class LagrimasCrudTest {
 
     @Test
     @DisplayName("Should delete an item when clicking delete button")
-    void shouldDeleteAnItemWhenClickingDeleteButton() {
+    void shouldDeleteAnItemWhenClickingDeleteButton() throws InterruptedException{
         driver.get("http://localhost:3000/");
 
         WebElement editButton = driver.findElement(By.xpath("(//div[@class='lagrima-card']//a)[1]"));
@@ -469,13 +469,15 @@ public class LagrimasCrudTest {
         WebElement nameInput = driver.findElement(By.id("nome"));
 
         //For some reason, Firefox doesn't let you delete a Tear if all the fields are filled in, so leaving a field empty makes the test pass successfully.
-        //nameInput.clear();
+        nameInput.clear();
 
         WebElement deleteButton = driver.findElement(By.id("deletar-button"));
         deleteButton.click();
+        Thread.sleep(1000);
 
         Alert alert = driver.switchTo().alert();
         alert.accept();
+        Thread.sleep(1000);
 
         String currentUrl = driver.getCurrentUrl();
         assertEquals("http://localhost:3000/", currentUrl);
